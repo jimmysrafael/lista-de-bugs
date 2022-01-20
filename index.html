@@ -28,12 +28,13 @@
             </p>
             <p>
                 <label for="bug">Selecione a classificação:</label>
-                <select name="bug" id="bug"  v-model="bug">
-                    <option value="sonoro">Sonoro</option>
-                    <option value="visual">Visual</option>
-                    <option value="físico">Físico</option>
-                    <option value="Glitchs">Glitchs</option>
-                    <option value="Financeiros">Financeiros</option>
+                <select v-model="selected">
+                    <option disabled value=" ">Escolha a classificação</option>   
+                    <option>Sonoro</option>
+                    <option>Visual</option>
+                    <option>Físico</option>
+                    <option>Glitchs</option>
+                    <option>Financeiros</option>
                     </select>
                     </p>
             <button v-on:click="addComment" type="submit" class="btn btn-primary">Enviar</button>
@@ -41,7 +42,7 @@
           <div class="list-group">
             <div class="list-group-item" v-for="(comment, index) in allComments">
               <span class="comment__author">Autor: <strong>{{ comment.name }}</strong></span>
-              <span class="comment__bug">Classificação:{{ comment.bug }}</span>
+              <span class="comment__bug">Classificação:{{ comment.selected }}</span>
               <p>{{ comment.message }}</p>
               <div>
                 <a href="#" title="Excluir" v-on:click.prevent="removeComment(index)">Excluir</a>
@@ -55,7 +56,8 @@
         return {
           comments: [],
           name: '',
-          message: ''
+          message: '',
+          selected: ''
         }
       },
       methods: {
@@ -66,7 +68,8 @@
         
           this.comments.push({
             name: this.name,
-            message: this.message
+            message: this.message,
+            selected: this.selected
           });
 
           this.name = '';
