@@ -42,7 +42,7 @@
           <div class="list-group">
             <div class="list-group-item" v-for="(comment, index) in allComments">
               <span class="comment__author">Autor: <strong>{{ comment.name }}</strong></span>
-              <span class="comment__bug">Classificação:{{ comment.selected }}</span>
+              <p><span class="comment__bug">Classificação: {{ comment.selected }}</span></p>
               <p>{{ comment.message }}</p>
               <div>
                 <a href="#" title="Excluir" v-on:click.prevent="removeComment(index)">Excluir</a>
